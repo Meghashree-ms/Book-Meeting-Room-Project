@@ -1,0 +1,78 @@
+<!-- <p>all-meetings works!</p> -->
+
+<div class="container">
+    <header class="header">
+      <h1>Book Room Meeting</h1>
+      <div class="header-right">
+        <span>Infrrd Admin</span>
+        <button class="logout-button" (click) ="logout()">Logout</button>
+      </div>
+    </header>
+    <!-- <button  mat-raised-button color="primary" (click)="bookMeetingDialog.openDialog()">Book Meeting</button>
+    <app-book-meeting-dialog #bookMeetingDialog></app-book-meeting-dialog> -->
+     <button  mat-raised-button color="primary" (click)="openDialog()">Book Meeting</button>
+    <!-- <app-book-meeting-dialog #bookMeetingDialog></app-book-meeting-dialog> -->
+
+    
+
+  
+
+
+    <section class="upcoming-meetings">
+        <h2>Your Upcoming Meetings</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Sr No</th>
+              <th>User Name</th>
+              <th>Agenda</th>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Room</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let meeting of meetingList; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ meeting.userName }}</td>
+              <td>{{ meeting.agenda }}</td>
+              <td>{{ meeting.meetingDate }}</td>
+              <td>{{ meeting.startTime }} - {{ meeting.endTime }}</td>
+              <td>{{ meeting.meetingRoom }}</td>
+              <td fxLayoutGap="10px">
+                <button mat-raised-button color="accent" (click)="editMeeting(i)">Edit</button>
+                <button mat-raised-button color="warn" (click)="deleteMeeting(i)">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      
+  
+    <!-- <section class="room-details">
+      <h2>Rooms Meeting Details</h2>
+      <label for="meeting-room-select">Select Meeting Room</label>
+      <select id="meeting-room-select">
+        <option>Meeting Room #1</option>
+        <option>Meeting Room #2</option>
+        <option>Meeting Room #3</option>
+      </select>
+  
+      <table>
+        <thead>
+          <tr>
+            <th>Sr No</th>
+            <th>User Name</th>
+            <th>Agenda</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Room</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </section> -->
+  </div>
+  

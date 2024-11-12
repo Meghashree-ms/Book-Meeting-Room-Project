@@ -1,0 +1,34 @@
+
+<div class="login-container">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <h2>BOOK A MEETING ROOM</h2>
+      <div>
+        <label for="username">Username:</label>
+        <input id="username" type="text" formControlName="username" />
+        <div *ngIf="username?.invalid && (username?.touched || username?.dirty)">
+          <small *ngIf="username?.errors?.['required']">Username is required.</small>
+          <small *ngIf="username?.errors?.['minlength']">Username must be at least 3 characters long.</small>
+        </div>
+      </div>
+  
+      <div>
+        <label for="password">Password:</label>
+        <input id="password" type="password" formControlName="password" />
+        <div *ngIf="password?.invalid && (password?.touched || password?.dirty)">
+          <small *ngIf="password?.errors?.['required']">Password is required.</small>
+          <small *ngIf="password?.errors?.['minlength']">Password must be at least 6 characters long.</small>
+        </div>
+      </div>
+  
+      <button  mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">Login</button>
+      <div *ngIf="loginError" class="error-message">{{ loginError }}</div>
+
+      <div style ="margin-top:10px">
+        userName: {{validUsername}}
+        password:{{validPassword}}
+      </div>
+    </form>
+  </div>
+  
+
+

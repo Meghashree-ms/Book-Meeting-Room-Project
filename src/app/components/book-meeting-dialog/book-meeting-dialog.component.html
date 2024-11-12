@@ -1,0 +1,79 @@
+<!-- <div class="dialog" *ngIf="showDialog">
+    <form [formGroup]="meetingForm" (ngSubmit)="onSubmit()">
+        <h2>Book Meeting</h2>
+        <div fxlayout = "row" fxLayoutAlign="start start" fxLayoutGap="20px">
+            <div fxlayout = "column" >
+                <label for="userName">User Name</label>
+                <input id="userName" formControlName="userName" required>
+            </div>
+            <div div fxlayout = "column">
+                <label for="meetingDate">Meeting Date</label>
+                <input type="date" id="meetingDate" formControlName="meetingDate" required>
+    
+            </div>
+          <div div fxlayout = "column">
+            <label for="startTime">Start Time</label>
+            <input type="time" id="startTime" formControlName="startTime" required>
+          </div>
+                    
+            <div div fxlayout = "column">
+                <label for="endTime">End Time</label>
+                <input type="time" id="endTime" formControlName="endTime" required>
+            </div>
+            
+        </div>
+        
+
+        <p class="info">**Time should be between 09:00 AM and 06:00 PM, Meeting should be at least 30 minutes</p>
+
+        <button type="submit" [disabled]="!meetingForm.valid">Save</button>
+        <button type="button" (click)="closeDialog()">Cancel</button>
+    </form>
+</div> -->
+
+<div class="dialog" >
+    <form [formGroup]="meetingForm" (ngSubmit)="onSubmit()">
+        <h2>Book Meeting</h2>
+
+        <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="15px">
+            <mat-form-field >
+                <mat-label>User Name</mat-label>
+                <input matInput id="userName" formControlName="userName" required>
+            </mat-form-field>
+            
+            <mat-form-field >
+                <mat-label>Meeting Date</mat-label>
+                <input matInput type="date" id="meetingDate" formControlName="meetingDate" required>
+            </mat-form-field>
+            
+            <mat-form-field>
+                <mat-label>Start Time</mat-label>
+                <input matInput type="time" id="startTime" formControlName="startTime" required>
+            </mat-form-field>
+            
+            <mat-form-field >
+                <mat-label>End Time</mat-label>
+                <input matInput type="time" id="endTime" formControlName="endTime" required>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Meeting Room</mat-label>
+            <mat-select formControlName="meetingRoom">
+                <mat-option *ngFor="let room of rooms" [value]="room.id">{{ room.name }}</mat-option>
+            </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Agenda</mat-label>
+                <textarea matInput formControlName="agenda" required></textarea>
+            </mat-form-field>
+        </div>
+
+        <p class="info">**Time should be between 09:00 AM and 06:00 PM, Meeting should be at least 30 minutes</p>
+
+        <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px">
+            <button mat-raised-button color="primary" type="submit" [disabled]="!meetingForm.valid">Save</button>
+            <button mat-button type="button" (click)="closeDialog()">Cancel</button>
+        </div>
+    </form>
+</div>
+
+
