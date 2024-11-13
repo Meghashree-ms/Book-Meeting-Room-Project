@@ -47,7 +47,7 @@ export class AllMeetingsComponent {
     const dialogRef = this.dialog.open(BookMeetingDialogComponent,{
       width: '50vw',
       height:'50vh',
-      data: ''
+      data: { action: 'add' } 
     });
   
 
@@ -73,14 +73,12 @@ editMeeting(index: number) {
   const dialogRef = this.dialog.open(BookMeetingDialogComponent, {
     width: '50vw',
     height:'50vh',
-    data: { meeting: this.meetingList[index] }
+    data: { action: 'edit', meeting: this.meetingList[index] } 
   });
 
   dialogRef.afterClosed().subscribe((result:any) => {
     if (result) {
-    
       this.meetingList[index] = result;
-   
     }
   });
 }

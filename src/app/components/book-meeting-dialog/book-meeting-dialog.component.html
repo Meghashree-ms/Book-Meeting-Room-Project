@@ -93,10 +93,10 @@
             </mat-form-field>
         </div>
 
-        <p class="info">**Time should be between 09:00 AM and 06:00 PM, Meeting should be at least 30 minutes</p>
+        <!-- <p class="info">**Time should be between 09:00 AM and 06:00 PM, Meeting should be at least 30 minutes</p> -->
 
         <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px">
-            <button mat-raised-button color="primary" type="submit" >Save</button>
+            <button mat-raised-button color="primary" type="submit" [disabled]="meetingForm.invalid">Save</button>
             <button mat-button type="button" (click)="closeDialog()">Cancel</button>
         </div>
     </form>

@@ -20,12 +20,21 @@ export class BookMeetingDialogComponent {
   ]
   isEditMode=false;
 
+  editingMeetingIndex:any;
+  public mockDatabase: any[] = [];
+
+  action: string; // 'add' or 'edit'
+  meetingData: any; // Meeting data (only for editing)
+
   constructor(private fb: FormBuilder, private meetingService: MeetingService,
     public dialogRef: MatDialogRef<BookMeetingDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
 
-    if (data) {
+    this.action = data.action; // 'add' or 'edit'
+    this.meetingData = data.meeting;
+
+    if (this.action === 'edit') {
       console.log('data',data);
       this.isEditMode = true;
       this.meetingForm = this.fb.group({
@@ -102,7 +111,8 @@ export class BookMeetingDialogComponent {
   onSubmit() {
     console.log('this.meetingForm.valid',this.meetingForm.valid)
     if (this.meetingForm.valid) {
-      this.meetingService.saveMeeting(this.meetingForm.value).subscribe(
+      const meetingData = this.meetingForm.value;
+      this.meetingService.saveMeeting(meetingData).subscribe(
         response => {
           alert('Meeting saved successfully!');
           // this.closeDialog();

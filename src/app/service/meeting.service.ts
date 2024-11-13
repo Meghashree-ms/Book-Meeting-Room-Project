@@ -14,14 +14,12 @@ export class MeetingService {
     // this.mockDatabase.push(meetingData);
     // console.log('Saved Meeting:', this.mockDatabase);
     // return of({ message: 'Meeting saved successfully!' });
-
     const index = this.mockDatabase.findIndex(
       (meeting) =>
-        meeting.meetingRoom === meetingData.meetingRoom &&
-        meeting.date === meetingData.date &&
-        meeting.timeFrom === meetingData.timeFrom
+        meeting.meetingRoom == meetingData.meetingRoom &&
+        meeting.meetingDate === meetingData.meetingDate &&
+        meeting.startTime === meetingData.startTime
     );
-  
     if (index !== -1) {
       this.mockDatabase[index] = meetingData;
      
