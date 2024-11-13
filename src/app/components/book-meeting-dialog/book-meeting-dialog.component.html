@@ -31,46 +31,72 @@
     </form>
 </div> -->
 
-<div class="dialog" >
+<div class="dialog" style="margin: 20px;" >
     <form [formGroup]="meetingForm" (ngSubmit)="onSubmit()">
         <h2>Book Meeting</h2>
 
         <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="15px">
-            <mat-form-field >
+            <mat-form-field appearance="outline" class="full-width">
                 <mat-label>User Name</mat-label>
-                <input matInput id="userName" formControlName="userName" required>
+                <input matInput id="userName_" formControlName="userName" minlength="3"  required >
+                <mat-error *ngIf="isFieldInvalid('userName')">
+                    <ng-container *ngIf="meetingForm.get('userName')?.hasError('required')">Username is required.</ng-container>
+                    <ng-container *ngIf="meetingForm.get('userName')?.hasError('minlength')">Username must be at least 3 characters long.</ng-container>
+                    <ng-container *ngIf="meetingForm.get('userName')?.hasError('pattern')">Only letters and spaces are allowed.</ng-container>
+                  </mat-error>
             </mat-form-field>
             
-            <mat-form-field >
+            <mat-form-field appearance="outline" class="full-width">
                 <mat-label>Meeting Date</mat-label>
                 <input matInput type="date" id="meetingDate" formControlName="meetingDate" required>
+                <mat-error *ngIf="isFieldInvalid('meetingDate')">
+                    <ng-container *ngIf="meetingForm.get('meetingDate')?.hasError('required')">Date is required.</ng-container>
+                    <ng-container *ngIf="meetingForm.get('meetingDate')?.hasError('invalidWeekday')">Only weekdays (Monday to Friday) are allowed.</ng-container>
+                  </mat-error>
             </mat-form-field>
             
-            <mat-form-field>
+            <mat-form-field appearance="outline" class="full-width">
                 <mat-label>Start Time</mat-label>
                 <input matInput type="time" id="startTime" formControlName="startTime" required>
+                <mat-error *ngIf="isFieldInvalid('startTime')">Start time is required.</mat-error>
             </mat-form-field>
             
-            <mat-form-field >
+            <mat-form-field appearance="outline" class="full-width" >
                 <mat-label>End Time</mat-label>
                 <input matInput type="time" id="endTime" formControlName="endTime" required>
+                <mat-error *ngIf="isFieldInvalid('endTime')">End time is required.</mat-error>
             </mat-form-field>
-            <mat-form-field>
+
+
+            <mat-error *ngIf="meetingForm.errors?.['invalidDuration']">
+                The meeting duration must be exactly 30 minutes.
+              </mat-error>
+
+            <mat-form-field appearance="outline" class="full-width">
                 <mat-label>Meeting Room</mat-label>
             <mat-select formControlName="meetingRoom">
                 <mat-option *ngFor="let room of rooms" [value]="room.id">{{ room.name }}</mat-option>
             </mat-select>
+            <mat-error *ngIf="isFieldInvalid('meetingRoom')">
+                Meeting room is required.
+              </mat-error>
             </mat-form-field>
-            <mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
                 <mat-label>Agenda</mat-label>
-                <textarea matInput formControlName="agenda" required></textarea>
+                <textarea matInput formControlName="agenda" required minlength = "10" maxlength="250"></textarea>
+                <mat-error *ngIf="isFieldInvalid('agenda')">
+                    <ng-container *ngIf="meetingForm.get('agenda')?.hasError('required')">Agenda is required.</ng-container>
+                    <ng-container *ngIf="meetingForm.get('agenda')?.hasError('minlength')">Agenda must be at least 10 characters long.</ng-container>
+                    <ng-container *ngIf="meetingForm.get('agenda')?.hasError('maxlength')">Agenda must not exceed 250 characters.</ng-container>
+                  </mat-error>
             </mat-form-field>
         </div>
 
         <p class="info">**Time should be between 09:00 AM and 06:00 PM, Meeting should be at least 30 minutes</p>
 
         <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px">
-            <button mat-raised-button color="primary" type="submit" [disabled]="!meetingForm.valid">Save</button>
+            <button mat-raised-button color="primary" type="submit" >Save</button>
             <button mat-button type="button" (click)="closeDialog()">Cancel</button>
         </div>
     </form>

@@ -39,15 +39,7 @@ export class AllMeetingsComponent {
       this.meetingList= data;
     });
   }
-  // editMeeting(index: number): void {
-  //   const meetingToEdit = this.meetingList[index];
-
-  //   console.log('Editing meeting:', meetingToEdit);
-
-
-
   
-  // }
 
 
 
@@ -61,7 +53,7 @@ export class AllMeetingsComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.meetingList.push(result); // Add the new meeting to the list
+        this.meetingList.push(result); 
       }
     });
   }
@@ -70,7 +62,7 @@ export class AllMeetingsComponent {
   deleteMeeting(index: number): void {
     if (confirm('Are you sure you want to delete this meeting?')) {
       this.meetingList.splice(index, 1);
-      console.log('Deleted meeting at index:', index);
+   
    
     }
   }
@@ -86,9 +78,9 @@ editMeeting(index: number) {
 
   dialogRef.afterClosed().subscribe((result:any) => {
     if (result) {
-      // Update the meeting list with the edited data
+    
       this.meetingList[index] = result;
-      // Optionally, persist the updated data using your service or backend logic
+   
     }
   });
 }
